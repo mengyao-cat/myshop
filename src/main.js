@@ -6,10 +6,18 @@ import './assets/css/global.css'
 // import './components/Home.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import '../fonts/iconfont.css'
+import './fonts/iconfont.css'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// axios 的请求拦截器
+axios.interceptors.request.use(config => {
+  // 给请求头添加token字段Authorization
+  config.headers.Authorization = sessionStorage.getItem('token')
+  return config
+}, error => {
+  return Promise.reject(error)
+})
 Vue.prototype.$http = axios
 Vue.use(ElementUI)
 
