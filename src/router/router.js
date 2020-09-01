@@ -6,8 +6,13 @@ import Welcome from '../components/welcome.vue'
 import User from '../components/user/Users.vue'
 <<<<<<< HEAD
 import Rights from '../components/power/Rights.vue'
+<<<<<<< HEAD
 =======
 >>>>>>> 7eabcf1... 完成了用户管理功能
+=======
+import Roles from '../components/power/Role.vue'
+import GoodCate from '../components/goods/GoodCate.vue'
+>>>>>>> home
 
 Vue.use(VueRouter)
 
@@ -22,10 +27,16 @@ const routes = [
       { path: '/welcome', component: Welcome },
 <<<<<<< HEAD
       { path: '/users', component: User },
+<<<<<<< HEAD
       { path: '/rights', component: Rights }
 =======
       { path: '/users', component: User }
 >>>>>>> 7eabcf1... 完成了用户管理功能
+=======
+      { path: '/rights', component: Rights },
+      { path: '/roles', component: Roles },
+      { path: '/categories', component: GoodCate }
+>>>>>>> home
     ]
   }
 ]
