@@ -4,7 +4,10 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import Welcome from '../components/welcome.vue'
 import User from '../components/user/Users.vue'
+<<<<<<< HEAD
 import Rights from '../components/power/Rights.vue'
+=======
+>>>>>>> 7eabcf1... 完成了用户管理功能
 
 Vue.use(VueRouter)
 
@@ -17,8 +20,12 @@ const routes = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: Welcome },
+<<<<<<< HEAD
       { path: '/users', component: User },
       { path: '/rights', component: Rights }
+=======
+      { path: '/users', component: User }
+>>>>>>> 7eabcf1... 完成了用户管理功能
     ]
   }
 ]
