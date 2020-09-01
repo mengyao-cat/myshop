@@ -107,10 +107,15 @@ export default {
   background-color: #373d41;
   display: flex;
   justify-content: space-between;
+  padding: 0;
 
   >div{
     display: flex;
     align-items: center;
+    span{
+      display: inline-block;
+      padding-left: 15px;
+    }
   }
 }
 .el-header span{
