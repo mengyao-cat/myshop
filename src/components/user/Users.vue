@@ -61,13 +61,7 @@
                   placement="top"
                   :enterable="false"
                 >
-                  <!-- @click="setRole(scope.row)"获取这一列的数据 -->
-                  <el-button
-                    type="warning"
-                    icon="el-icon-setting"
-                    size="mini"
-                    @click="setRole(scope.row)"
-                  ></el-button>
+                  <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
                 </el-tooltip>
               </el-row>
             </template>
@@ -135,30 +129,7 @@
         <el-button @click="editDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="editUser">确 定</el-button>
       </span>
-    </el-dialog>
-    <!-- 分配角色的对话框 -->
-    <el-dialog title="分配角色" :visible.sync="setRoleDialogVisible" width="50%" @close="removeSlectRole">
-      <!-- 内容 -->
-      <!-- //显示字段 渲染内容 -->
-      <p>当前的用户名:{{userInfo.username}}</p>
-      <p>当前的用户名:{{userInfo.role_name}}</p>
-      <p>
-        分配新角色:
-        <el-select v-model="selectRole" placeholder="请选择">
-          <el-option
-            v-for="item in rolesList"
-            :key="item.id"
-            :label="item.roleName"
-            :value="item.id"
-          ></el-option>
-        </el-select>
-      </p>
-      <!-- 底部按钮区域 -->
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="saveRole()">确 定</el-button>
-      </span>
-    </el-dialog>
+    </el-dialog>删除
   </div>
 </template>
 <script>
@@ -200,12 +171,6 @@ export default {
       total: 0, // 总条数
       AddDialogVisible: false, // 控制对话框显示与隐藏
       editDialogVisible: false,
-      setRoleDialogVisible: false,
-      // 定义userInfo,用于接收当前正在操作的角色分配这一行的数据
-      userInfo: {},
-      // rolesList,用于接收角色分配的动态,后台数据
-      rolesList: [],
-      selectRole: '',
       // 添加新用户
       addForm: {
         username: 'admin',
@@ -241,6 +206,7 @@ export default {
         mobile: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
           { validator: checkMobile, trigger: 'blur' }
+
         ]
       },
 
@@ -260,8 +226,10 @@ export default {
         mobile: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
           { validator: checkMobile, trigger: 'blur' }
+
         ]
       }
+
     }
   },
   created() {
@@ -302,7 +270,7 @@ export default {
     },
     // 点击按钮 添加新用户 表单预验证
     addUser() {
-      this.$refs.addFormRef.validate(async (isvalid) => {
+      this.$refs.addFormRef.validate(async isvalid => {
         if (!isvalid) return
         // 验证成功,发送请求
         // console.log(isvalid)
@@ -337,18 +305,16 @@ export default {
     // 修改用户信息并且提交
     // 提交之前需要对表单进行表单预验证
     editUser() {
-      this.$refs.editFormRef.validate(async (isvalid) => {
+      this.$refs.editFormRef.validate(async isvalid => {
         if (!isvalid) return
         // 发起修改用户信息的数据请求
         // console.log(isvalid)
         console.log('this', this)
-        const { data: res } = await this.$http.put(
-          'users/' + this.editForm.id,
-          {
-            email: this.editForm.email,
-            mobile: this.editForm.mobile
-          }
-        )
+        const { data: res } = await this.$http.put('users/' + this.editForm.id, {
+          email: this
+            .editForm.email,
+          mobile: this.editForm.mobile
+        })
         // 判断数据 如果错误给出一个错误提示信息
         if (res.meta.status !== 200) {
           this.$message({
@@ -377,7 +343,7 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
-        callback: async (action) => {
+        callback: async action => {
           console.log(action)
           if (action !== 'confirm') {
             // 删除操作
@@ -392,28 +358,9 @@ export default {
           this.getUserList()
         }
       })
-    },
-    // 点击分配角色按钮显示对话框
-    async setRole(userinfo) {
-      this.userInfo = userinfo
-      // 获取所有的角色列表数据
-      const { data: res } = await this.$http.get('roles')
-      this.rolesList = res.data
-      this.setRoleDialogVisible = true
-    },
-    async saveRole() {
-      await this.$http.put('users/' + this.userInfo.id + '/role', {
-        rid: this.selectRole
-      })
-      this.$message.success('分配成功')
-      this.getUserList()
-      this.setRoleDialogVisible = false
-    },
-    removeSlectRole() {
-      this.selectRole = ''
-      this.userInfo = []
     }
   }
+
 }
 </script>
 <style lang="less" scoped>
