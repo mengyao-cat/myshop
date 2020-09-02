@@ -20,8 +20,8 @@ const routes = [
     children: [
       { path: '/welcome', component: Welcome },
       { path: '/users', component: User },
-      { path: '/rights', component: Rights }
-      { path: '/users', component: User }
+      { path: '/rights', component: Rights },
+      { path: '/users', component: User },
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
       { path: '/categories', component: GoodCate }
