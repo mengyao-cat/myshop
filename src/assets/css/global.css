@@ -22,3 +22,6 @@ font-size: 12px;
 .el-pagination{
     margin-top: 15px;
 }
+.el-cascader-menu__wrap{
+    height: 204px;
+}
