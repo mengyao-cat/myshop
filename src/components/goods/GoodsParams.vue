@@ -23,8 +23,14 @@
             @change="handleCascaderChange"
           ></el-cascader>
         </el-col>
-        <el-col></el-col>
       </el-row>
+      <!-- tab页签区域 -->
+      <el-tabs v-model="activeName" @tab-click="handleTabClick">
+        <!-- 添加动态参数的面板 将标签页改为many -->
+        <el-tab-pane label="动态参数" name="many"></el-tab-pane>
+        <!-- 静态属性表格 -->
+        <el-table :data="onlyTableData" border stripe></el-table>
+      </el-tabs>
     </el-card>
   </div>
 </template>
@@ -33,7 +39,8 @@ export default {
   data() {
     return {
       cateList: [],
-      selectedParentCateKeys: []
+      selectedParentCateKeys: [],
+      activeName: 'first'
     }
   },
   created() {
@@ -47,7 +54,11 @@ export default {
       this.cateList = res.data.result
       this.total = res.data.total
     },
-    handleCascaderChange() {}
+    handleCascaderChange() {
+      if (this.selectedParentCateKeys.length < 3) {
+        this.selectedParentCateKeys = []
+      }
+    }
   }
 }
 </script>
