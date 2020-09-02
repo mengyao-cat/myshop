@@ -32,9 +32,6 @@
           ></i>
           <i class="el-icon-error" v-else style="color:red"></i>
         </template>
-<<<<<<< HEAD
-      </tree-table>
-=======
         <!-- 排序 -->
         <template slot="order" slot-scope="scope">
           <el-tag size="mini" v-if="scope.row.cat_level===0">一级</el-tag>
@@ -58,7 +55,6 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       ></el-pagination>
->>>>>>> goods
     </el-card>
     <!-- 添加分类的对话框 -->
     <!-- :visible.sync定义变量用来控制显示与隐藏 -->
@@ -111,10 +107,7 @@ export default {
       // ceshi
       cateList: [],
       total: 0, // 总数据
-<<<<<<< HEAD
-=======
       addCateDialogVisible: false,
->>>>>>> goods
       columns: [
         {
           label: '大家电',
@@ -125,10 +118,6 @@ export default {
           label: '是否有效',
           type: 'template',
           template: 'isOk'
-<<<<<<< HEAD
-        }
-      ]
-=======
         },
         // 排序
         {
@@ -140,8 +129,7 @@ export default {
           label: '操作',
           type: 'template',
           template: 'opt'
-        }
-      ],
+        }],
       // 添加分类表单数据对象
       addCateForm: {
         cat_name: '',
@@ -163,7 +151,6 @@ export default {
       // 父级分类的列表
       parentCateList: [],
       selectedParentCateKeys: []
->>>>>>> goods
     }
   },
   created() {
