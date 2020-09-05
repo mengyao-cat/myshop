@@ -25,3 +25,10 @@ font-size: 12px;
 .el-cascader-menu__wrap{
     height: 204px;
 }
+.el-steps{
+    margin: 15px;
+
+}
+.ql-editor{
+    min-height: 300px;
+}

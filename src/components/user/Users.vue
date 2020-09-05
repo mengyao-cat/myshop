@@ -129,7 +129,7 @@
         <el-button @click="editDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="editUser">确 定</el-button>
       </span>
-    </el-dialog>删除
+    </el-dialog>
   </div>
 </template>
 <script>
